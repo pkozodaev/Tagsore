@@ -44,7 +44,6 @@ void sortAndWrite( std::vector<Record>& records, std::ofstream& outputFile )
   }
 }
 
-
 int main()
 {
   std::ifstream inputFile( "gen.txt");
@@ -62,8 +61,6 @@ int main()
     currentFilePos = inputFile.tellg();
     if ( currentFilePos - prevBlockEnd > g_blockSize )
     {
-      //std::cout << "blockSize = " << currentFilePos - prevBlockEnd << std::endl;
-      std::cout << "unsort records.size = " << records.size() << std::endl;
       sortAndWrite( records, outputFile );
       outputFile.close();
       records.clear();
@@ -71,12 +68,13 @@ int main()
       ++idx;
       outputFile.open( "p1_" + std::to_string( idx ) + ".sort" );
     }
-      
   }
 
   sortAndWrite( records, outputFile );
   outputFile.close();
   records.clear();
+
+
 
   return 0;
 }
